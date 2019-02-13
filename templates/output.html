@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="text-white">
+    <h1>Your Workout Program</h1>
+    <hr>
+      <h3>Week 1</h3>
+        <h4>Day 1</h4>
+          <ul>
+          {% for line in outputs['week1']['day1'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+        <h4>Day 2</h4>
+          <ul>
+          {% for line in outputs['week1']['day2'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+        <h4>Day 3</h4>
+          <ul>
+          {% for line in outputs['week1']['day3'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+
+      <h3>Week 2</h3>
+        <h4>Day 1</h4>
+          <ul>
+          {% for line in outputs['week2']['day1'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+        <h4>Day 2</h4>
+          <ul>
+          {% for line in outputs['week2']['day2'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+        <h4>Day 3</h4>
+          <ul>
+          {% for line in outputs['week2']['day3'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+
+      <h3>Week 3</h3>
+        <h4>Day 1</h4>
+          <ul>
+          {% for line in outputs['week3']['day1'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+        <h4>Day 2</h4>
+          <ul>
+          {% for line in outputs['week3']['day2'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+        <h4>Day 3</h4>
+          <ul>
+          {% for line in outputs['week3']['day3'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+
+      <h3>Week 4</h3>
+         <h4>Day 1</h4>
+           <ul>
+          {% for line in outputs['week4']['day1'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+        <h4>Day 2</h4>
+          <ul>
+          {% for line in outputs['week4']['day2'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+        <h4>Day 3</h4>
+          <ul>
+          {% for line in outputs['week4']['day3'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+
+      <h3>Week 5</h3>
+        <h4>Day 1</h4>
+          <ul>
+          {% for line in outputs['week5']['day1'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+        <h4>Day 2</h4>
+          <ul>
+          {% for line in outputs['week5']['day2'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+        <h4>Day 3</h4>
+          <ul>
+          {% for line in outputs['week5']['day3'] %}
+            <li> {{ line }} </li>
+          {% endfor %}
+          </ul>
+</div>
+{% endblock %}
