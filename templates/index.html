@@ -1,7 +1,6 @@
 
 {% extends "layout.html" %}
 {% block content %}
-<div class="container">
 {% for site in outputs['news'].keys() %}
 {%  set site_name = site %}
 {%  for article in outputs['news'][site_name] %}
@@ -24,6 +23,5 @@
 </div>
 {%  endfor %}
 {% endfor %}
-</div>
 {% endblock %}
 
