@@ -8,7 +8,10 @@
         "s3_bucket": "zappa-news-site-dev",
         "domain": "dev-news.themcilroy.com",
         "route53_enabled": true,
-        "certificate_arn": "arn:aws:acm:us-east-1:824269988929:certificate/fdc01f6c-be49-40b3-afb7-707d085d1042"
+        "certificate_arn": "arn:aws:acm:us-east-1:824269988929:certificate/fdc01f6c-be49-40b3-afb7-707d085d1042",
+        "environment_variables": {
+            "NLTK_DATA": "./nltk_data"
+        }
     },
     "prod": {
         "app_function": "index.app",
@@ -19,6 +22,9 @@
         "s3_bucket": "zappa-news-site-prod",
         "domain": "news.themcilroy.com",
         "route53_enabled": true,
-        "certificate_arn": "arn:aws:acm:us-east-1:824269988929:certificate/fdc01f6c-be49-40b3-afb7-707d085d1042"
+        "certificate_arn": "arn:aws:acm:us-east-1:824269988929:certificate/fdc01f6c-be49-40b3-afb7-707d085d1042",
+        "environment_variables": {
+            "NLTK_DATA": "./nltk_data"
+        }
     }
 }
