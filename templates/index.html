@@ -1,35 +1,29 @@
 
 {% extends "layout.html" %}
 {% block content %}
-<div class="row">
-  <div class="col-4"></div>
-  <div class="card mt-5">
+<div class="container">
+{% for site in outputs['news'].keys() %}
+{%  set site_name = site %}
+{%  for article in outputs['news'][site_name] %}
+{%    set headline = article['headline'] %}
+{%    set link = article['link'] %}
+{%    set summary = article['summary'] %}
+<div class="card mt-5">
+    <div class="card-header">
+      <a href={{ link }}>
+        <h3>
+          {{site_name}}: {{ headline }}
+        </h3>
+      </a>
+    </div>
+    </h3>
     <div class="card-body">
-      <form action="/workout" method="post">
-        <div class="form-group">
-
-            <h2>Input Maxes:</h2>
-            <input type="number" class="form-control" name="msq" placeholder="Max Squat">
-            <input type="number" class="form-control" name="mbe" placeholder="Max Press">
-            <input type="number" class="form-control" name="mdl" placeholder="Max Deadlift">
-
-            <h2>Volume:</h2>
-            <div class="form-check">
-                <input type="radio" class="form-check-input" name="mainliftchoice" value="low" checked>Low</input>
-            </div>
-            <div class="form-check">
-                <input type="radio" class="form-check-input" name="mainliftchoice" value="high">High</input>
-            </div>
-
-          <div>
-            <button type="submit" value="Submit" class="button btn btn-primary">Submit</button>
-          </div>
-
-        </div>
-      </form>
+      <p>{{ summary }}</p>
     </div>
   </div>
-  <div class="col-4"></div>
+</div>
+{%  endfor %}
+{% endfor %}
 </div>
 {% endblock %}
 
