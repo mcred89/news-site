@@ -29,10 +29,11 @@ def get_reuters(outputs):
     source = requests.get(url).text
     soup = BeautifulSoup(source, 'lxml')
 
-    first_story_container = soup.find('h2', class_="story-title")
-    first_story = first_story_container.a
+    first_story_container = soup.find('section', id="topStory")
+    first_story = first_story_container.find('h2', class_="story-title")
+    print(url + first_story.a['href'])
     outputs = make_news_summary(
-        outputs, 'reuters', url + first_story['href'],
+        outputs, 'reuters', url + first_story.a['href'],
         0, first_story.text)
 
     second_story_container = soup.find('div', class_="news-headline-list")
@@ -40,7 +41,7 @@ def get_reuters(outputs):
     second_story_title = second_story_container.find('h3', class_="story-title")
     outputs = make_news_summary(
         outputs, 'reuters', url + second_story_link['href'],
-        0, second_story_title.text.strip())
+        1, second_story_title.text.strip())
 
     return outputs
 
