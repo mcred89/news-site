@@ -18,9 +18,9 @@ def sp_create():
 
 @app.route("/congress", methods=['GET'])
 def congress_create():
-  outputs = {}
-  outputs = scrape.news_run(outputs)
-  return render_template('news.html', outputs=outputs)
+  outputs = []
+  outputs = scrape.congress_run(outputs)
+  return render_template('congress.html', outputs=outputs)
 
 @app.route("/about", methods=['GET'])
 def about_create():

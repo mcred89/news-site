@@ -31,7 +31,6 @@ def get_reuters(outputs):
 
     first_story_container = soup.find('section', id="topStory")
     first_story = first_story_container.find('h2', class_="story-title")
-    print(url + first_story.a['href'])
     outputs = make_news_summary(
         outputs, 'Reuters', url + first_story.a['href'],
         0, first_story.text)
@@ -78,6 +77,39 @@ def supreme_court_run(outputs):
         count += 1
         if count == 3:
             break
+    return outputs
+
+def congress_run(outputs):
+    url = 'https://www.congress.gov/search?pageSize=50&pageSort=dateOfIntroduction:desc&q={%22source%22:%22legislation%22,%22bill-status%22:%22passed-one%22,%22type%22:%22bills%22}'
+    source = requests.get(url).text
+    soup = BeautifulSoup(source, 'lxml')
+
+    count = 0
+
+    cut_summary_lines = [
+        ""
+    ]
+
+    for bill in soup.find_all('li', class_='expanded'):
+        outputs.append({})
+        heading = bill.find('span', class_="result-heading")
+        link = heading.a['href']
+        outputs[count]['link'] = link
+        title = bill.find('span', class_="result-title").text
+        outputs[count]['title'] = title
+        bill_source = requests.get(link).text
+        bill_soup = BeautifulSoup(bill_source, 'lxml')
+        summary_section = bill_soup.find('div', id="bill-summary")
+        if not summary_section:
+            outputs[count]['summary'] = 'No summary available'
+        else:
+            summary = []
+            for summary_line in summary_section.find_all('p'):
+                if not summary_line.a:
+                    summary.append(summary_line.text)
+            summary = ' '.join(summary)
+            outputs[count]['summary'] = summary
+        count += 1
     return outputs
 
     
