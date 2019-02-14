@@ -3,18 +3,13 @@
 {% for bill in outputs %}
 {%  set title = bill['title'] %}
 {%  set link = bill['link'] %}
-{%  set summary = bill['summary'] %}
 <div class="card bg-dark text-white mt-2">
-    <div class="card-header">
-        <a href={{ link }}>
-            <h3>
-                {{ title }}
-            </h3>
-        </a>
     <div class="card-body">
-        <p>
-            {{ summary }}
-        </p>
+      <a href={{ link }}>
+        <h3>
+            {{ title }}
+        </h3>
+      </a>
     </div>
 </div>
 {% endfor %}
