@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+{% for day in outputs.keys() %}
+{%  set date = day %}
+<div class="card bg-dark text-white mt-2">
+    <div class="card-header">
+        <h2>
+            {{ date }}
+        </h2>
+    </div>
+    <div class="card-body">
+{%  for ruling in outputs[date] %}
+{%    set case = ruling['case'] %}
+{%    set link = ruling['link'] %}
+{%    set summary = ruling['summary'] %}
+      <br/>
+      <a href={{ link }}>
+        <h3>
+            {{ case }}
+        </h3>
+      </a>
+      <br/>
+      <p>{{ summary }}</p>
+{%  endfor %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

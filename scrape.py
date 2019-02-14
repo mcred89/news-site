@@ -45,8 +45,40 @@ def get_reuters(outputs):
 
     return outputs
 
-def run(outputs):
+def news_run(outputs):
     outputs['news'] = {}
     outputs = get_ap(outputs)
     outputs = get_reuters(outputs)
     return outputs
+
+def supreme_court_run(outputs):
+    url = 'https://www.supremecourt.gov/'
+    source = requests.get(url).text
+    soup = BeautifulSoup(source, 'lxml')
+
+    count = 0
+
+    for day in soup.find_all(id='opinionsbyday'):
+        date = day.find('span', class_="soday").text
+        outputs[date] = []
+        names = 0
+        for ruling in day.find_all('div', class_="casenamerow"):
+            outputs[date].append({})
+            outputs[date][names]['case'] = ruling.span.text
+            names += 1
+        summaries = 0
+        for summary in day.find_all('div', class_="casedetail"):
+            outputs[date][summaries]['summary'] = summary.span.text
+            summaries += 1
+        opinions = 0
+        for opinion in day.find_all('a', target="_blank"):
+            link = url + opinion['href']
+            outputs[date][opinions]['link'] = link
+            opinions += 1
+        count += 1
+        if count == 3:
+            break
+    return outputs
+
+    
+    
