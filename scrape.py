@@ -80,15 +80,11 @@ def supreme_court_run(outputs):
     return outputs
 
 def congress_run(outputs):
-    url = 'https://www.congress.gov/search?pageSize=50&pageSort=dateOfIntroduction:desc&q={%22source%22:%22legislation%22,%22bill-status%22:%22passed-one%22,%22type%22:%22bills%22}'
+    url = 'https://www.congress.gov/search?pageSize=10&pageSort=dateOfIntroduction:desc&q={%22source%22:%22legislation%22,%22bill-status%22:%22passed-one%22,%22type%22:%22bills%22}'
     source = requests.get(url).text
     soup = BeautifulSoup(source, 'lxml')
 
     count = 0
-
-    cut_summary_lines = [
-        ""
-    ]
 
     for bill in soup.find_all('li', class_='expanded'):
         outputs.append({})
@@ -110,6 +106,8 @@ def congress_run(outputs):
             summary = ' '.join(summary)
             outputs[count]['summary'] = summary
         count += 1
+        if count == 10:
+            break
     return outputs
 
     
