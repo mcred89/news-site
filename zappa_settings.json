@@ -11,7 +11,8 @@
         "certificate_arn": "arn:aws:acm:us-east-1:824269988929:certificate/fdc01f6c-be49-40b3-afb7-707d085d1042",
         "environment_variables": {
             "NLTK_DATA": "./nltk_data"
-        }
+        },
+        "keep_warm": false
     },
     "prod": {
         "app_function": "index.app",
