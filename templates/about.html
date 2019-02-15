@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card bg-dark text-white mt-2">
+    <div class="card-header">
+        <h3>
+          About
+        </h3>
+    </div>
+    <div class="card-body">
+      <p>
+        I've built this site to help myself keep up with news and government.
+      </p>
+      <ul>
+          <li>
+              News: The majority of stories on a news site are there just to fill space.
+              I've never seen more than 2 relevant stories on a site at a time.
+              This page takes the top 2 stories from neutral news sources, then uses NLP to create a summary of the stories.
+          </li>
+          <li>
+              Supreme Court Rulings: Gives all of the ruling from the last 3 days worth of rulings.
+              The links on this page go directly to the justices' opinions on the case.
+              The majority of these ruling are boring, pedantic, legalistic arguments, but I like to keep an eye out for important rulings.
+              There are the occassional interesting philosophical arguments.
+          </li>
+          <li>
+              Congressional Bills: Gives the last 25 bills that have passed at least one house of congress.
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

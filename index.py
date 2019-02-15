@@ -24,9 +24,7 @@ def congress_create():
 
 @app.route("/about", methods=['GET'])
 def about_create():
-  outputs = {}
-  outputs = scrape.news_run(outputs)
-  return render_template('news.html', outputs=outputs)
+  return render_template('about.html')
 
 if __name__ == "__main__":
   app.run(debug=True, host='127.0.0.1')
