@@ -106,6 +106,18 @@ def congress_run(outputs):
         outputs[count]['link'] = link
         title = bill.find('span', class_="result-title").text
         outputs[count]['title'] = title
+        bill_source = requests.get(link).text
+        bill_soup = BeautifulSoup(bill_source, 'lxml')
+        summary_section = bill_soup.find('div', id="bill-summary")
+        if not summary_section:
+            outputs[count]['summary'] = 'No summary available'
+        else:
+            summary = []
+            for summary_line in summary_section.find_all('p'):
+                if not summary_line.a:
+                    summary.append(summary_line.text)
+            summary = ' '.join(summary)
+            outputs[count]['summary'] = summary
         count += 1
     return outputs
 
