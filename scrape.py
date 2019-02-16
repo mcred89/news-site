@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 from  newspaper import Article
+import boto3
 
 def get_summary(url):
     article = Article(url)
@@ -121,5 +122,27 @@ def congress_run(outputs):
         count += 1
     return outputs
 
-    
-    
+def scrape_all():
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('news-site')
+
+    new_outputs = {}
+    new_outputs = news_run(new_outputs)
+    table.put_item(
+        Item={'page': 'news',
+              'content': new_outputs})
+
+    sp_outputs = {}
+    sp_outputs = supreme_court_run(sp_outputs)
+    table.put_item(
+        Item={'page': 'supreme_court',
+              'content': sp_outputs})
+
+    congress_outputs = []
+    congress_outputs = congress_run(congress_outputs)
+    table.put_item(
+        Item={'page': 'congress',
+              'content': congress_outputs})  
+
+if __name__ == "__main__":
+    scrape_all()
