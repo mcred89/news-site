@@ -26,6 +26,11 @@
         "certificate_arn": "arn:aws:acm:us-east-1:824269988929:certificate/fdc01f6c-be49-40b3-afb7-707d085d1042",
         "environment_variables": {
             "NLTK_DATA": "./nltk_data"
-        }
+        },
+        "events": [{
+            "function": "scrape.scrape_all",
+            "expression": "rate(5 minutes)"
+        }],
+        "timeout_seconds": 240
     }
 }
