@@ -72,21 +72,22 @@ def supreme_court_run(outputs):
     count = 0
 
     for day in soup.find_all(id='opinionsbyday'):
+        outputs.append({})
         date = day.find('span', class_="soday").text
-        outputs[date] = []
+        outputs[count][date] = []
         names = 0
         for ruling in day.find_all('div', class_="casenamerow"):
-            outputs[date].append({})
-            outputs[date][names]['case'] = ruling.span.text
+            outputs[count][date].append({})
+            outputs[count][date][names]['case'] = ruling.span.text
             names += 1
         summaries = 0
         for summary in day.find_all('div', class_="casedetail"):
-            outputs[date][summaries]['summary'] = summary.span.text
+            outputs[count][date][summaries]['summary'] = summary.span.text
             summaries += 1
         opinions = 0
         for opinion in day.find_all('a', target="_blank"):
             link = url + opinion['href']
-            outputs[date][opinions]['link'] = link
+            outputs[count][date][opinions]['link'] = link
             opinions += 1
         count += 1
         if count == 3:
@@ -132,7 +133,7 @@ def scrape_all():
         Item={'page': 'news',
               'content': new_outputs})
 
-    sp_outputs = {}
+    sp_outputs = []
     sp_outputs = supreme_court_run(sp_outputs)
     table.put_item(
         Item={'page': 'supreme_court',

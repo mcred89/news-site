@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-{% for day in outputs.keys() %}
-{%  set date = day %}
+{% for day in outputs %}
+{%  for date in day.keys()%}    
+{%    set date = date %}
 <div class="card bg-dark text-white mt-2">
     <div class="card-header">
         <h2>
@@ -9,7 +10,7 @@
         </h2>
     </div>
     <div class="card-body">
-{%  for ruling in outputs[date] %}
+{%  for ruling in day[date] %}
 {%    set case = ruling['case'] %}
 {%    set link = ruling['link'] %}
 {%    set summary = ruling['summary'] %}
@@ -24,5 +25,6 @@
 {%  endfor %}
     </div>
 </div>
+{% endfor %}
 {% endfor %}
 {% endblock %}
