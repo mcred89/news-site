@@ -31,6 +31,7 @@
             "function": "scrape.scrape_all",
             "expression": "rate(5 minutes)"
         }],
-        "timeout_seconds": 240
+        "timeout_seconds": 240,
+        "keep_warm": false
     }
 }
