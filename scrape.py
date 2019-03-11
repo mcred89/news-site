@@ -119,7 +119,10 @@ def congress_run(outputs):
                 if not summary_line.a:
                     summary.append(summary_line.text)
             summary = ' '.join(summary)
-            outputs[count]['summary'] = summary
+            if summary == '':
+                outputs[count]['summary'] = 'No summary available'
+            else:
+                outputs[count]['summary'] = summary
         count += 1
     return outputs
 
