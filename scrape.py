@@ -30,7 +30,7 @@ def get_ap(outputs):
 
     second_story_container = soup.find('div', class_="RelatedStory")
     second_story_link = second_story_container.a
-    second_story_title = second_story_container.find('div', class_="headline")
+    second_story_title = second_story_container.find(attrs={"data-key": "related-story-headline"})
     outputs = make_news_summary(
         outputs, 'AP', url + second_story_link['href'],
         1, second_story_title.text)
